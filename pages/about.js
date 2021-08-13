@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { Footer } from '../components/Footer'
-import { Links }  from '../components/Links'
-import { Headline } from '../components/Headline'
+import { Main } from '../components/Main'
 
 export default function About(props) {
   // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない。
@@ -15,10 +14,19 @@ export default function About(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Headline page="about"/>
+      {/* <main className={styles.main}>
+        <Headline 
+          page="about" 
+          number={111} 
+          array={[1, 2, 3]}
+          obj={{foo:"foo", bar: "bar"}}
+          boolean={true} // trueの場合は省略して「boolean」だけの記述でもtrueを返せる
+        >
+          <code className={styles.code}>pages/about.js</code>
+          </Headline>
         <Links />
-      </main>
+      </main> */}
+      <Main page="about" />
 
       <Footer />
     </div>

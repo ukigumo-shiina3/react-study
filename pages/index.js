@@ -2,8 +2,7 @@ import Head from 'next/head'
 // import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { Footer } from '../components/Footer'
-import { Links } from '../components/Links'
-import { Headline } from '../components/Headline'
+import { Main } from '../components/Main'
 
 export default function Home() {
   // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない。
@@ -15,10 +14,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Headline page="index"/>
-        <Links />
-      </main>
+      {/* <main className={styles.main}>
+        <Headline 
+          page="index"
+          onClick={() => alert("クリック！！")}
+        >
+          <code className={styles.code}>pages/index.js</code>
+          </Headline>
+        <Links /> */}
+        <Main page="index" />
       <Footer />
     </div>
   )
