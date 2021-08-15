@@ -4,25 +4,21 @@ import classes from "src/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  // // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない
-  console.log("マウント時");
+  const [foo, setFoo] = useState(1);
+  // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない
+  const handleClick = (e) => {
+    setFoo((foo) => foo + 1);
+  };
+
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
 
     return () => {
-      console.log("アンマウント時");
       document.body.style.backgroundColor = "";
     };
-  }, []);
-
-  const handleClick = useCallback((e) => {
-    // useCallback→再レンダリングされたときに再生成されることがなくなる。第2引数が必要(空の配列を渡す)
-    console.log(e.target.href);
-    // e.target.○○→クリックした要素の属性にアクセスすることができる
-    e.preventDefault();
   }, []);
 
   return (
@@ -31,10 +27,8 @@ export default function Home() {
         <title>Index Page</title>
       </Head>
       <Header />
-      <a href="/about" onClick={handleClick}>
-        {/* return内部でメソッドは書かない。処理が多くなった場合に見た目がわかりづらい */}
-        ボタン
-      </a>
+      <h1>{foo}</h1>
+      <button onClick={handleClick}>ボタン</button>
       <Main page="index" />
       <Footer />
     </div>
