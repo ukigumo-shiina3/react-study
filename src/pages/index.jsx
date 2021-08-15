@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState("true");
   // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない
   const handleClick = useCallback(
     (e) => {
@@ -23,6 +25,19 @@ export default function Home() {
   // 第2引数に何も指定していなかったら、再生成されないのでcountは1のまま。
   // 指定した場合関数内の処理が更新され再生成される
 
+  const handleDisplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以上にしてください");
+      return;
+    }
+    setText(e.target.value.trim());
+    // trim→triming処理 空白行(スペース)を打つことができないようにする
+  }, []);
+
   useEffect(() => {
     // マウントの処理
     // console.log(`マウント時: ${count}`);
@@ -34,6 +49,7 @@ export default function Home() {
     };
   }, [count]);
   // 第2引数に値を入れると変数が変更されたタイミングで、改めてuseEffectの部分の処理が走る。マウントとアンマウント両方呼ばれる
+  // console.log(text);
 
   return (
     <div className={classes.container}>
@@ -41,8 +57,14 @@ export default function Home() {
         <title>Index Page</title>
       </Head>
       <Header />
-      <h1>{count}</h1>
+      {isShow ? <h1>{count}</h1> : null}
+      {/* 三項演算子 null→何も表示させない */}
       <button onClick={handleClick}>ボタン</button>
+      <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+      {/* アロー関数内ではreturnは省略して1行でかける */}
+      <input type="text" value={text} onChange={handleChange} />
+      {/* onChange→テキストの変更があったときにその時のイベントを取得 */}
+
       <Main page="index" />
       <Footer />
     </div>
