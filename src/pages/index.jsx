@@ -10,6 +10,7 @@ export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState("true");
+  const [array, setArray] = useState([]);
   // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない
   const handleClick = useCallback(
     (e) => {
@@ -38,6 +39,21 @@ export default function Home() {
     // trim→triming処理 空白行(スペース)を打つことができないようにする
   }, []);
 
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      // const newArray = prevArray;
+      // newArray.push(1);
+      if (prevArray.some((item) => item === text)) {
+        // some:条件が一つでも合致するものがあればtrue、一つも合致しなければfalseを返す。同じテキストの場合アラートを出す設定にする
+        alert("同じ要素が既に存在します。");
+        return prevArray;
+      }
+      // console.log(newArray === prevArray);
+      // スプレッド構文で前のprevArrayを展開
+      return [...prevArray, text];
+    });
+  }, [text]);
+
   useEffect(() => {
     // マウントの処理
     // console.log(`マウント時: ${count}`);
@@ -64,6 +80,12 @@ export default function Home() {
       {/* アロー関数内ではreturnは省略して1行でかける */}
       <input type="text" value={text} onChange={handleChange} />
       {/* onChange→テキストの変更があったときにその時のイベントを取得 */}
+      <button onClick={handleAdd}>追加</button>
+      <ul>
+        {array.map((item) => {
+          return <div key={item}>{item}</div>;
+        })}
+      </ul>
 
       <Main page="index" />
       <Footer />
