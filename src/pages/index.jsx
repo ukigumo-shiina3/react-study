@@ -16,7 +16,7 @@ export default function Home() {
       // usecallback→再生成されないようにする
       console.log(count);
       if (count < 10) {
-        setCount((count) => count + 1);
+        setCount((prevCount) => prevCount + 1);
         // (count)→前回の数値が入っている
       }
     },
@@ -26,7 +26,7 @@ export default function Home() {
   // 指定した場合関数内の処理が更新され再生成される
 
   const handleDisplay = useCallback(() => {
-    setIsShow((isShow) => !isShow);
+    setIsShow((prevIShow) => !prevIsShow);
   }, []);
 
   const handleChange = useCallback((e) => {
