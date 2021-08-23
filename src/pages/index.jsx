@@ -5,35 +5,26 @@ import { Footer } from "src/components/Footer";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 
-export default function Home(props) {
+const Home = (props) => {
   // ファイルシステムルーティングを機能させるためにpages配下のファイルはexport defaultにしなければいけない
-  const {
-    count,
-    isShow,
-    handleClick,
-    handleDisplay,
-    text,
-    array,
-    handleChange,
-    handleAdd,
-  } = props;
-
   return (
     <div className={classes.container}>
       <Head>
         <title>Index Page</title>
       </Head>
       <Header />
-      {isShow ? <h1>{count}</h1> : null}
+      {props.isShow ? <h1>{props.count}</h1> : null}
       {/* 三項演算子 null→何も表示させない */}
-      <button onClick={handleClick}>ボタン</button>
-      <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+      <button onClick={props.handleClick}>ボタン</button>
+      <button onClick={props.handleDisplay}>
+        {props.isShow ? "非表示" : "表示"}
+      </button>
       {/* アロー関数内ではreturnは省略して1行でかける */}
-      <input type="text" value={text} onChange={handleChange} />
+      <input type="text" value={props.text} onChange={props.handleChange} />
       {/* onChange→テキストの変更があったときにその時のイベントを取得 */}
-      <button onClick={handleAdd}>追加</button>
+      <button onClick={props.handleAdd}>追加</button>
       <ul>
-        {array.map((item) => {
+        {props.array.map((item) => {
           return <div key={item}>{item}</div>;
         })}
       </ul>
@@ -42,4 +33,6 @@ export default function Home(props) {
       <Footer />
     </div>
   );
-}
+};
+
+export default Home;

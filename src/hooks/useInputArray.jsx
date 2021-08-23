@@ -16,7 +16,7 @@ export const useInputArray = () => {
     setArray((prevArray) => {
       // const newArray = prevArray;
       // newArray.push(1);
-      if (prevArray.some((item) => item === text)) {
+      if (prevArray.includes(text)) {
         // some:条件が一つでも合致するものがあればtrue、一つも合致しなければfalseを返す。同じテキストの場合アラートを出す設定にする
         alert("同じ要素が既に存在します。");
         return prevArray;
