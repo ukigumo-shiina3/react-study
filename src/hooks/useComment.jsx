@@ -4,7 +4,7 @@ import useSWR from "swr";
 
 export const useComment = () => {
   const router = useRouter();
-  const { data: comment, error: commentError } = useSWR(
+  const { data, error } = useSWR(
     router.query.id
       ? `https://jsonplaceholder.typicode.com/comments/${router.query.id}`
       : null,
@@ -12,8 +12,8 @@ export const useComment = () => {
   );
 
   return {
-    comment,
-    error: commentError,
-    isLoading: !comment && !commentError,
+    data,
+    error,
+    isLoading: !data && !error,
   };
 };
