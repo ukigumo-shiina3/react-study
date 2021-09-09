@@ -15,18 +15,20 @@ export const User = () => {
 
   return (
     <div>
-      <Head>
-        <title>{data?.name}</title>
-        <h2>詳細</h2>
-      </Head>
-      <h1>{data?.name}</h1>
-      <p>email: {data?.email}</p>
-      <p>city: {data?.address.city}</p>
-      <p>phone: {data?.phone}</p>
-      <p>website: {data?.website}</p>
-      <p>company: {data?.company.name}</p>
-      <h2>投稿</h2>
-      <PostsByUserId id={data.id} />
+      <h1 className="font-bold text-3xl">{data.name}</h1>
+      <h2 className="text-xl font-bold mt-10">詳細</h2>
+      <ul className="list-inside list-disc mt-2 text-xl">
+        <li>アカウント名: {data.username}</li>
+        <li>メール: {data.email}</li>
+        <li>電話番号: {data.phone}</li>
+        <li>Webサイト: {data.website}</li>
+        <li>住所: {data.address.city}</li>
+        <li>勤務先: {data.company.name}</li>
+      </ul>
+      <h2 className="text-xl font-bold mt-10">投稿</h2>
+      <div className="mt-2">
+        <PostsByUserId id={data.id} />
+      </div>
     </div>
   );
 };
