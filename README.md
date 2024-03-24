@@ -1,3 +1,18 @@
-## react-study 
-
-next.jsを使用しながらreactの基礎・応用を学習。
+## 学習内容
+- コンポーネントの作り方
+- Next.jsでの静的ページの作成
+- Propsを活用したコンポーネントの表示の出し分けとchildrenの使い方
+- Linkコンポーネントを活用した高速なページ遷移
+- mapを活用したコンポーネントの繰り返し処理
+- useEffectとライフサイクル
+- useStateの状態管理
+- useEffectとuseStateの第2引数の配列
+- イミュータブルや破壊的メソッド
+- スプレッド構文
+- Custom Hooks
+- Stateのリフトアップでページ間やコンポーネント間で値の共通化
+- useMemo/useRouter
+- SWRを使った非同期処理
+- ファイルシステムルーティング
+- Server Side Rendering(SSR) 
+- Static Site Generation(SSG)
